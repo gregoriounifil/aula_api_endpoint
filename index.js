@@ -5,15 +5,8 @@ const { v4: uuidv4 } = require('uuid');
 
 const novoId = uuidv4();
 
-app.use(express.json());
-
 // MIDDLEWARE ESSENCIAL - Adicione SEMPRE no início!
 app.use(express.json());
-
-// Agora você pode acessar req.body em qualquer rota POST
-app.post('/api/produtos', (req, res) => {
-    console.log(req.body); // Objeto JavaScript pronto!
-});
 
 
 // Dados em memória
@@ -23,6 +16,17 @@ let produtos = [
     { id: 3, nome: "Livro JavaScript", preco: 89, categoria: "Livros", estoque: 30 },
     { id: 4, nome: "Teclado Mecânico", preco: 450, categoria: "Informática", estoque: 20 }
 ];
+
+let categorias = [
+    { id: uuidv4(), nome: "Informática" },
+    { id: uuidv4(), nome: "Livros" }
+];
+
+let usuarios = [
+    { id: uuidv4(), nome: "Admin", email: "admin@api.com" }
+];
+
+let vendas = [];
 
 // GET /api/produtos - Listar com filtros, ordenação e paginação
 app.get('/api/produtos', (req, res) => {
@@ -66,13 +70,72 @@ app.get('/api/produtos', (req, res) => {
 
 // GET /api/produtos/:id - Buscar por ID
 app.get('/api/produtos/:id', (req, res) => {
-    const produto = produtos.find(p => p.id === parseInt(req.params.id));
+    const produto = produtos.find(p => p.id === req.params.id);
     if (!produto) return res.status(404).json({ erro: "Produto não encontrado" });
     res.json(produto);
 });
 
 
-app.listen(3000, () => console.log('🚀 API rodando na porta 3000'));
+
+app.post('/api/categorias', (req, res) => {
+    const { nome } = req.body;
+
+    if (!nome) {
+        return res.status(400)
+    }
+
+    const novaCategoria = {
+        id: uuidv4(),
+        nome: nome
+    };
+
+    categorias.push(novaCategoria);
+
+    res.status(201).json(novaCategoria);
+});
+
+app.post('/api/usuarios', (req, res) => {
+    const { nome, email } = req.body;
+
+    if (!nome || !email) {
+        return res.status(400)
+    }
+
+    const novoUsuario = {
+        id: uuidv4(),
+        nome: nome,
+        email: email
+    };
+
+    usuarios.push(novoUsuario);
+
+    res.status(201).json(novoUsuario);
+});
+
+app.post('/api/vendas', (req, res) => {
+    const { produtoId, quantidade } = req.body;
+
+    if (!produtoId || !quantidade) {
+        return res.status(400)
+    }
+
+    const produtoExiste = produtos.find(p => p.id === produtoId);
+
+    if(!produtoExiste) {
+        return res.status(404)
+    }
+
+    const novaVenda = {
+        id: uuidv4(),
+        produtoId,
+        quantidade,
+        data: new Date()
+    };
+
+    vendas.push(novaVenda);
+
+    res.status(201).json(novaVenda);
+});
 
 app.post('/api/produtos', (req, res) => {
     // 1. Extrair dados do body
@@ -108,7 +171,7 @@ app.post('/api/produtos', (req, res) => {
     
     // 6. Se passou em TODAS as validações, criar produto
     const novoProduto = {
-        id: proximoId++,
+        id: uuidv4(),
         nome,
         preco,
         categoria
@@ -120,3 +183,5 @@ app.post('/api/produtos', (req, res) => {
     // 8. Retornar sucesso com 201 Created
     res.status(201).json(novoProduto);
 });
+
+app.listen(3000, () => console.log('🚀 API rodando na porta 3000'));
