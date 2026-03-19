@@ -70,7 +70,7 @@ app.get('/api/produtos', (req, res) => {
 
 // GET /api/produtos/:id - Buscar por ID
 app.get('/api/produtos/:id', (req, res) => {
-    const produto = produtos.find(p => p.id === req.params.id);
+    const produto = produtos.find(p => p.id == req.params.id);
     if (!produto) return res.status(404).json({ erro: "Produto não encontrado" });
     res.json(produto);
 });
