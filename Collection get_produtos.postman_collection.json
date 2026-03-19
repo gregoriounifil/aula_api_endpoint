@@ -1,90 +1,70 @@
 {
   "info": {
-    "_postman_id": "bde1f0b8-1b78-41b0-8c72-b4d79666ec56",
-    "name": "Collection get_produtos",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "_exporter_id": "53190291",
-    "_collection_link": "https://go.postman.co/collection/53190291-bde1f0b8-1b78-41b0-8c72-b4d79666ec56?source=collection_link"
+    "name": "API Produtos e Vendas - Completa",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
     {
-      "name": "http://localhost:3000/api/produtos/1",
-      "protocolProfileBehavior": {
-        "disableBodyPruning": true
-      },
+      "name": "Listar Todos os Produtos",
       "request": {
         "method": "GET",
-        "header": [
-          {
-            "key": "Content-Type",
-            "value": "application/json",
-            "type": "text"
-          }
-        ],
+        "url": "http://localhost:3000/api/produtos"
+      }
+    },
+    {
+      "name": "Buscar Produto por ID",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:3000/api/produtos/1"
+      }
+    },
+    {
+      "name": "Cadastrar Categoria",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
         "body": {
           "mode": "raw",
-          "raw": "",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+          "raw": "{\n  \"nome\": \"Eletrônicos\"\n}"
         },
-        "url": {
-          "raw": "http://localhost:3000/api/produtos/1",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "3000",
-          "path": [
-            "api",
-            "produtos",
-            "1"
-          ]
-        }
-      },
-      "response": []
+        "url": "http://localhost:3000/api/categorias"
+      }
     },
     {
-      "name": "New Request",
+      "name": "Cadastrar Usuário",
       "request": {
-        "method": "GET",
-        "header": []
-      },
-      "response": []
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nome\": \"Gregorio Celso\",\n  \"email\": \"gregorio@email.com\"\n}"
+        },
+        "url": "http://localhost:3000/api/usuarios"
+      }
     },
     {
-      "name": "New Request",
+      "name": "Cadastrar Produto (UUID)",
       "request": {
-        "method": "GET",
-        "header": []
-      },
-      "response": []
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nome\": \"Webcam 4K\",\n  \"preco\": 599.90,\n  \"categoria\": \"Eletrônicos\"\n}"
+        },
+        "url": "http://localhost:3000/api/produtos"
+      }
     },
     {
-      "name": "New Request",
+      "name": "Registrar Venda",
       "request": {
-        "method": "GET",
-        "header": []
-      },
-      "response": []
-    },
-    {
-      "name": "New Request",
-      "request": {
-        "method": "GET",
-        "header": []
-      },
-      "response": []
-    },
-    {
-      "name": "New Request",
-      "request": {
-        "method": "GET",
-        "header": []
-      },
-      "response": []
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"produtoId\": 1,\n  \"quantidade\": 2\n}"
+        },
+        "url": "http://localhost:3000/api/vendas"
+      }
     }
   ]
 }
