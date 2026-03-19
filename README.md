@@ -1,9 +1,9 @@
-GET /api/produtos -> Lista os produtos com filtro.
-GET /api/produto/:id -> Busca um produto pelo seu id.
-POST /api/produtos -> Cadastra um produto.
-POST /api/categorias -> Cadastra uma categoria.
-POST /api/usuarios -> Cadastra um novo usuário.
-POST /api/vendas -> Registra a venda de um produto.
+GET /api/produtos -> Lista os produtos com filtro. <br>
+GET /api/produto/:id -> Busca um produto pelo seu id. <br>
+POST /api/produtos -> Cadastra um produto. <br>
+POST /api/categorias -> Cadastra uma categoria. <br>
+POST /api/usuarios -> Cadastra um novo usuário. <br>
+POST /api/vendas -> Registra a venda de um produto. <br>
 
 
 <img width="1558" height="736" alt="image" src="https://github.com/user-attachments/assets/0071c0c9-49f0-4961-8e36-dcf16cac4e3f" />
