@@ -1,0 +1,70 @@
+{
+  "info": {
+    "name": "API Produtos e Vendas - Completa",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Listar Todos os Produtos",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:3000/api/produtos"
+      }
+    },
+    {
+      "name": "Buscar Produto por ID",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:3000/api/produtos/1"
+      }
+    },
+    {
+      "name": "Cadastrar Categoria",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nome\": \"Eletrônicos\"\n}"
+        },
+        "url": "http://localhost:3000/api/categorias"
+      }
+    },
+    {
+      "name": "Cadastrar Usuário",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nome\": \"Gregorio Celso\",\n  \"email\": \"gregorio@email.com\"\n}"
+        },
+        "url": "http://localhost:3000/api/usuarios"
+      }
+    },
+    {
+      "name": "Cadastrar Produto (UUID)",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nome\": \"Webcam 4K\",\n  \"preco\": 599.90,\n  \"categoria\": \"Eletrônicos\"\n}"
+        },
+        "url": "http://localhost:3000/api/produtos"
+      }
+    },
+    {
+      "name": "Registrar Venda",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"produtoId\": 1,\n  \"quantidade\": 2\n}"
+        },
+        "url": "http://localhost:3000/api/vendas"
+      }
+    }
+  ]
+}
